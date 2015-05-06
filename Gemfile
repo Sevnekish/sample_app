@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+ruby '2.1.1'
+#ruby-gemset=railstutorial_rails_4_2_0
 
 gem 'rails',        '4.2.0'
 gem 'sass-rails',   '5.0.2'
