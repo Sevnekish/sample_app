@@ -59,8 +59,7 @@ class UserTest < ActiveSupport::TestCase
     email_downcase = @user.email.downcase
     @user.email.upcase
     @user.save
-    @user.reload.email
-    assert email_downcase == @user.email
+    assert_equal email_downcase, @user.reload.email
   end
 
   test "password should have a minimum length" do
