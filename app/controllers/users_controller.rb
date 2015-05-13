@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 
   # logged_in_user called before the given actions [:edit, :update]
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :index]
   before_action :correct_user,   only: [:edit, :update]
+
+  def index
+    @users = User.all
+  end
 
   def show
     @user = User.find(params[:id])
