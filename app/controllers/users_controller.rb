@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+  # logged_in_user called before the given actions [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update]
+
   def show
     @user = User.find(params[:id])
     #debugger
@@ -43,5 +46,15 @@ class UsersController < ApplicationController
       # (while raising an error if the :user attribute is missing
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation)
+    end
+
+    # Before filters
+
+    # Confirms a logged-in user
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in"
+        redirect_to login_url
+      end
     end
 end
