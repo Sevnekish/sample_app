@@ -40,6 +40,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # Verify that a profile link appears
     assert_select "a[href=?]", user_path(@user)
 
+    # log out with delete request
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
