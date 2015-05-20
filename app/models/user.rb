@@ -112,7 +112,8 @@ class User < ActiveRecord::Base
   # See "Following users" for the full implementation.
 
   def feed
-    Micropost.where("user_id = ?", id)
+    # following_ids = User.first.following.map(&:id)
+    Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
   end
 
   # Follows a user
